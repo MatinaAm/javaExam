@@ -15,12 +15,11 @@ import static utils.functions.FileUtilsReadWrite.extractPlanetName;
 import static utils.functions.FileUtilsReadWrite.readExistingData;
 import static utils.functions.ParseResources.parseResources;
 
-public class Final {
+public class Main {
     public static void main(String[] args) {
 
-
         FileUtilsReadWrite fileUtils = new FileUtilsReadWrite();
-        String fileName = "D:\\TEST-JAVA-2\\test.txt";
+        String fileName = "D:\\TEST-JAVA-1\\javaExam\\data.txt";
 
         try {
 
@@ -63,8 +62,6 @@ public class Final {
             // Input for resources
             System.out.print("آیا این سیاره منابع طبیعی دارد؟ (1: بله، 2: خیر): ");
             int hasResources = scanner.nextInt();
-
-
 
             NaturalResource[] resources;
 

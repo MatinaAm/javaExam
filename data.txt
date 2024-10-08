@@ -1,0 +1,3 @@
+Planet{name='ee', type=MILKY_WAY, type=ROCK, moons=5, distanceFromSun=1.0, resources=[NONE], lifeStatus=HABITABLE}
+Planet{name='8', type=MILKY_WAY, type=ROCK, moons=6, distanceFromSun=2.0, resources=[NONE], lifeStatus=HABITABLE}
+Planet{name='WWQ', type=MILKY_WAY, type=ROCK, moons=10, distanceFromSun=1.0, resources=[GOLD], lifeStatus=HABITABLE}
