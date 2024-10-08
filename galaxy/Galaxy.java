@@ -15,6 +15,11 @@ public class Galaxy {
         this.planets = new ArrayList<>(); // Initialize the list of planets
     }
 
+    public Galaxy(String name) {
+        this.name = GalaxyNameEnum.valueOf(name);
+        this.planets = new ArrayList<>(); // Initialize the list of planets
+    }
+
     // Method to add a planet to the galaxy
     public void addPlanet(Planet planet) {
         planets.add(planet);

@@ -15,7 +15,7 @@ public class InstancePlanet extends Planet {
 
     @Override
     public void displayPlanetInfo() {
-        System.out.println(this.toString());
+        System.out.println(this );
     }
 
     @Override
@@ -29,6 +29,7 @@ public class InstancePlanet extends Planet {
         if (moons > 0) {
             int currentMoons = this.getMoons(); // Get the current number of moons
             setMoons(currentMoons + moons); // Update the number of moons
+            System.out.println("you have "+ currentMoons + moons + "moons now");
 
         } else {
             System.out.println("Cannot add a negative number of moons.");

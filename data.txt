@@ -1,3 +1,7 @@
-Planet{name='ee', type=MILKY_WAY, type=ROCK, moons=5, distanceFromSun=1.0, resources=[NONE], lifeStatus=HABITABLE}
-Planet{name='8', type=MILKY_WAY, type=ROCK, moons=6, distanceFromSun=2.0, resources=[NONE], lifeStatus=HABITABLE}
-Planet{name='WWQ', type=MILKY_WAY, type=ROCK, moons=10, distanceFromSun=1.0, resources=[GOLD], lifeStatus=HABITABLE}
+Planet{name='kkkk', galaxyName=MILKY_WAY, type=ROCK, moons=20, distanceFromSun=1.0, resources=[NONE], lifeStatus=HABITABLE}
+Planet{name='ee', galaxyName=MILKY_WAY, type=ROCK, moons=2, distanceFromSun=1.0, resources=[NONE], lifeStatus=HABITABLE}
+Planet{name='uu', galaxyName=WHIRLPOOL, type=ROCK, moons=2, distanceFromSun=1.0, resources=[NONE], lifeStatus=HABITABLE}
+Planet{name='2', galaxyName=MILKY_WAY, type=GAS, moons=3, distanceFromSun=2.0, resources=[NONE], lifeStatus=HABITABLE}
+Planet{name='earth', galaxyName=ELLIPTICAL, type=ROCK, moons=2, distanceFromSun=1.0, resources=[NONE], lifeStatus=UNHABITABLE}
+Planet{name='oo', galaxyName=MILKY_WAY, type=ROCK, moons=2, distanceFromSun=1.0, resources=[NONE], lifeStatus=HABITABLE}
+Planet{name='0saa', galaxyName=MILKY_WAY, type=ROCK, moons=3, distanceFromSun=2.0, resources=[NONE], lifeStatus=HABITABLE}

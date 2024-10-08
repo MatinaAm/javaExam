@@ -110,7 +110,7 @@ public abstract class Planet  {
     public String toString() {
         return "Planet{" +
                 "name='" + name + '\'' +
-                ", type=" + galaxyName +
+                ", galaxyName=" + galaxyName +
                 ", type=" + type +
                 ", moons=" + moons +
                 ", distanceFromSun=" + distanceFromSun +

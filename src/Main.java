@@ -34,6 +34,7 @@ public class Main {
             System.out.print("نام کهکشان را وارد کنید (MILKY_WAY, ANDROMEDA, TRIANGULUM, WHIRLPOOL, SOMBRERO, SPIRAL, ELLIPTICAL, IRREGULAR): ");
             String galaxyName = scanner.nextLine(); // User input for galaxy
 
+
             GalaxyNameEnum galaxy;
 
             try {
@@ -94,21 +95,29 @@ public class Main {
 
             System.out.println("Writing to file...");
             String inputData = scanner.nextLine();
+
+            boolean isFound = false;
             // Check for duplicates
             for (String data : existingPlanets) {
                 String planetNames = extractPlanetName(data);
                 if (existingPlanets.contains(inputData) || planetNames.equals(name)) {
+                    isFound = true;
+                    existingPlanets.remove(data);  // Remove the old planet
+                    existingPlanets.add(String.valueOf(planet));  // Remove the old planet
                     System.out.println("Duplicate entry: This planet data already exists in the file.");
-                    return;
+                    break;  // Exit the loop once the duplicate is found and replaced
                 }
 
             }
 
-            fileUtils.writeFile(fileName, String.valueOf(planet));
+            fileUtils.writeFile2(fileName, String.valueOf(planet), isFound, existingPlanets);
+
             // Reading content from the file
             System.out.println("Reading from file...");
             String fileContent = fileUtils.readFromFile(fileName);
-            System.out.println("File Content:");
+
+//            Galaxy allgalaxyData= new Galaxy(galaxyName);
+//            allgalaxyData.displayGalaxyInfo();
             scanner.close();
 
         } catch (IllegalArgumentException e) {

@@ -43,15 +43,30 @@ import java.util.Set;
 
 public class FileUtilsReadWrite {
 
-    // Method to write content to a file (appends to the file)
-    public void writeFile(String fileName, String content) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true)); // Append mode
-        writer.write(content);
-        writer.newLine(); // Adds a new line after writing
-        writer.close(); // Always close resources
+
+
+    public void writeFile2(String fileName, String content, boolean isFound, Set<String> allPlanets) throws IOException {
+        // If the data is found (duplicate exists), overwrite the entire file with updated content.
+        if (isFound) {
+            // Overwrite mode (not append), write all planets including the replacement
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, false))) {  // false means overwrite
+                for (String planet : allPlanets) {
+                    writer.write(planet);  // Write each planet data to the file
+                    writer.newLine();
+                }
+            }
+//            System.out.println("test not append ----it is uniq");
+
+        } else {
+            // Append mode (new data)
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {  // true means append
+                writer.write(content);
+                writer.newLine();
+
+            }
+        }
     }
 
-//    ================================
 
     // Method to read the entire content of a file
     public String readFromFile(String fileName) throws IOException {
@@ -83,6 +98,8 @@ public class FileUtilsReadWrite {
         }
         return planets;
     }
+
+
 
 
     public static String extractPlanetName(String planetData) {
