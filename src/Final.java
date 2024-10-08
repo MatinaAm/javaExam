@@ -1,7 +1,7 @@
 package src;
 
 import galaxy.Galaxy;
-import utils.FileUtilsReadWrite;
+import utils.functions.FileUtilsReadWrite;
 import utils.enums.GalaxyNameEnum;
 import utils.enums.LifeStatus;
 import utils.enums.NaturalResource;
@@ -9,8 +9,11 @@ import utils.enums.PlanetType;
 
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.Set;
 
-import static utils.enums.GalaxyNameEnum.displayGalaxies;
+import static utils.functions.FileUtilsReadWrite.extractPlanetName;
+import static utils.functions.FileUtilsReadWrite.readExistingData;
+import static utils.functions.ParseResources.parseResources;
 
 public class Final {
     public static void main(String[] args) {
@@ -19,11 +22,7 @@ public class Final {
         FileUtilsReadWrite fileUtils = new FileUtilsReadWrite();
         String fileName = "D:\\TEST-JAVA-2\\test.txt";
 
-        // Example content to write
-        String content = "This is a sample text2222.";
-
         try {
-
 
             Galaxy.displayGalaxies();
             Scanner scanner = new Scanner(System.in);
@@ -38,12 +37,11 @@ public class Final {
 
             GalaxyNameEnum galaxy;
 
-            // Check if the input is empty or invalid, use MILKY_WAY if so
             try {
                 if (galaxyName.isEmpty()) {
-                    galaxy = GalaxyNameEnum.MILKY_WAY; // Use MILKY_WAY if no input is provided
+                    galaxy = GalaxyNameEnum.MILKY_WAY;
                 } else {
-                    galaxy = GalaxyNameEnum.valueOf(galaxyName.toUpperCase()); // Convert input to Galaxy enum
+                    galaxy = GalaxyNameEnum.valueOf(galaxyName.toUpperCase());
                 }
             } catch (IllegalArgumentException e) {
                 System.out.println("کهکشان نامعتبر است. از کهکشان پیش‌فرض MILKY_WAY استفاده می‌شود.");
@@ -66,14 +64,16 @@ public class Final {
             System.out.print("آیا این سیاره منابع طبیعی دارد؟ (1: بله، 2: خیر): ");
             int hasResources = scanner.nextInt();
 
+
+
             NaturalResource[] resources;
+
             if (hasResources == 1) {
+
                 System.out.print("منابع طبیعی را وارد کنید (WATER، GOLD، IRON، ...): ");
                 scanner.nextLine(); // Consume newline
                 String resourceInput = scanner.nextLine(); // Get user input for resources
-
-                // Convert input to an array of resources
-                resources = new NaturalResource[]{NaturalResource.valueOf(resourceInput.toUpperCase())};
+                resources = parseResources(resourceInput); // Use helper method to parse and validate input
             } else {
                 resources = new NaturalResource[]{NaturalResource.NONE}; // No resources
             }
@@ -88,34 +88,37 @@ public class Final {
             planet.displayPlanetInfo();
 
 
-            System.out.print("تعداد ماه: ");
+            System.out.print("تغییر تعداد قمر: ");
             int moon = scanner.nextInt();
             planet.addMoons(moon);
 
             planet.displayPlanetInfo();
-
+            Set<String> existingPlanets = readExistingData(fileName);
 
             System.out.println("Writing to file...");
-            fileUtils.writeFile(fileName, String.valueOf(planet));
+            String inputData = scanner.nextLine();
+            // Check for duplicates
+            for (String data : existingPlanets) {
+                String planetNames = extractPlanetName(data);
+                if (existingPlanets.contains(inputData) || planetNames.equals(name)) {
+                    System.out.println("Duplicate entry: This planet data already exists in the file.");
+                    return;
+                }
 
+            }
+
+            fileUtils.writeFile(fileName, String.valueOf(planet));
             // Reading content from the file
             System.out.println("Reading from file...");
             String fileContent = fileUtils.readFromFile(fileName);
             System.out.println("File Content:");
-            System.out.println(fileContent);
-
-
             scanner.close();
-
 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());  // Output: Planet name must be unique. 'Earth' already exists.
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
-//        ======================
 
 
     }

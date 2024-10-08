@@ -31,16 +31,15 @@
 
 
 
-package utils;
+package utils.functions;
 
-import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class FileUtilsReadWrite {
 
@@ -51,6 +50,8 @@ public class FileUtilsReadWrite {
         writer.newLine(); // Adds a new line after writing
         writer.close(); // Always close resources
     }
+
+//    ================================
 
     // Method to read the entire content of a file
     public String readFromFile(String fileName) throws IOException {
@@ -66,4 +67,39 @@ public class FileUtilsReadWrite {
         }
         return content.toString(); // Convert the StringBuilder to String
     }
+
+//    =====================================
+    public static Set<String> readExistingData(String filePath) throws IOException {
+        Set<String> planets = new HashSet<>();
+        File file = new File(filePath);
+
+        if (file.exists()) {
+            try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    planets.add(line.trim()); // Add each line to the set
+                }
+            }
+        }
+        return planets;
+    }
+
+
+    public static String extractPlanetName(String planetData) {
+        if (planetData == null || !planetData.contains("name='")) {
+            return "Unknown"; // or throw an exception, depending on your use case
+        }
+
+        // Extracting the name using substring
+        int startIndex = planetData.indexOf("name='") + 6; // Position after "name='"
+        int endIndex = planetData.indexOf("'", startIndex); // Position of the next "'"
+
+        // Check if the endIndex is valid
+        if (endIndex == -1 || endIndex <= startIndex) {
+            return "Unknown"; // or throw an exception
+        }
+
+        return planetData.substring(startIndex, endIndex);
+    }
+
 }
