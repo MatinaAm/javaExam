@@ -14,14 +14,14 @@ public abstract class Planet  {
 
 
     private String name;  //  نام یکتا و غیرتکراری
-    private GalaxyNameEnum galaxyName;  //  نام یکتا و غیرتکراری
+    private String galaxyName;  //  نام یکتا و غیرتکراری
     private PlanetType type;  // استفاده از enum برای نوع سیاره
-    private int moons;    // تعداد قمرها
+    private int moons;
     private double distanceFromSun;  // فاصله از خورشید (واحد: میلیون کیلومتر)
 
     private List<NaturalResource> resources;  // List to hold resources available on the planet
 
-    public Planet(String name, GalaxyNameEnum galaxyNameEnum, PlanetType type, int moons, double distanceFromSun, List<NaturalResource> resources, LifeStatus lifeStatus) {
+    public Planet(String name, String galaxyNameEnum, PlanetType type, int moons, double distanceFromSun, List<NaturalResource> resources, LifeStatus lifeStatus) {
         setName(name);  // Use setter to validate name
         this.galaxyName = galaxyNameEnum;
         this.type = type;
@@ -55,7 +55,6 @@ public abstract class Planet  {
     }
 
     public void setName(String name) {
-
 
         if (existingNames.contains(name)) {
             throw new IllegalArgumentException("Planet name must be unique. '" + name + "' already exists.");

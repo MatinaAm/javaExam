@@ -9,7 +9,7 @@ import utils.enums.PlanetType;
 import java.util.List;
 
 public class InstancePlanet extends Planet {
-    public InstancePlanet(String name, GalaxyNameEnum galaxy , int moons, PlanetType type, double distanceFromSun, NaturalResource[] resource, LifeStatus habitable ) {
+    public InstancePlanet(String name, String galaxy , int moons, PlanetType type, double distanceFromSun, NaturalResource[] resource, LifeStatus habitable ) {
         super(name,galaxy, type, moons, distanceFromSun, List.of(resource),habitable);
     }
 

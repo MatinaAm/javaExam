@@ -11,11 +11,11 @@ public enum GalaxyNameEnum {
     IRREGULAR;
 
 
-    public static void displayGalaxies() {
-        System.out.println("Available galaxies:");
-        for (GalaxyNameEnum galaxy : GalaxyNameEnum.values()) {
-            System.out.println(" - " + galaxy);
-        }
-    }
+//    public static void displayGalaxies() {
+//        System.out.println("Available galaxies:");
+//        for (GalaxyNameEnum galaxy : GalaxyNameEnum.values()) {
+//            System.out.println(" - " + galaxy);
+//        }
+//    }
 
 }

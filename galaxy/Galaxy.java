@@ -7,43 +7,62 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Galaxy {
-    private GalaxyNameEnum name;  //  نام یکتا و غیرتکراری
-    private List<Planet> planets; // List to hold planets in the galaxy
+    private GalaxyNameEnum galaxyName;
+    private String customName;
+    private List<Planet> planets;
 
-    public Galaxy(GalaxyNameEnum name) {
-        this.name = name;
-        this.planets = new ArrayList<>(); // Initialize the list of planets
+    // Constructor for predefined galaxy names
+    public Galaxy(GalaxyNameEnum galaxyName) {
+        this.galaxyName = galaxyName;
+        this.planets = new ArrayList<>();
     }
 
-    public Galaxy(String name) {
-        this.name = GalaxyNameEnum.valueOf(name);
-        this.planets = new ArrayList<>(); // Initialize the list of planets
+    // Constructor for a custom galaxy name
+    public Galaxy(String customName) {
+        this.customName = customName;
+        this.planets = new ArrayList<>();
     }
 
-    // Method to add a planet to the galaxy
+    public String getName() {
+        return (galaxyName != null) ? galaxyName.name() : customName;
+    }
+
     public void addPlanet(Planet planet) {
         planets.add(planet);
     }
 
-    public GalaxyNameEnum getName() {
-        return name;
-    }
 
     public List<Planet> getPlanets() {
         return planets;
     }
 
-    public static void displayGalaxies() {
-        System.out.println("کهکشان‌های موجود:");
-        for (GalaxyNameEnum galaxy : GalaxyNameEnum.values()) {
-            System.out.println(galaxy);
+    public void displayPlanets() {
+        System.out.println("Planets in " + getName() + ":");
+        for (Planet planet : planets) {
+            System.out.println("- " + planet.getName());
         }
     }
 
-    public void displayGalaxyInfo() {
-        System.out.println("Galaxy: " + name);
-        for (Planet planet : planets) {
-            planet.displayPlanetInfo(); // Display info for each planet
-        }
-    }
+
+
+//    public boolean displayPlanets(String targetPlanetName) {
+//        boolean found = false;
+//
+//        for (Planet planet : planets) {
+//            System.out.println("Planets in " + planet + ":");
+//
+//            System.out.println("- " + planet.getName());
+//            if (planet.getName().equals(targetPlanetName)) {
+//                found = true;
+//            }
+//        }
+//
+//        if (found) {
+//            System.out.println("Planet '" + targetPlanetName + "' is available.");
+//        } else {
+//            System.out.println("Planet '" + targetPlanetName + "' is not available.");
+//        }
+//        return found;
+//    }
+
 }
